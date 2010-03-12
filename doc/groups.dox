@@ -1,5 +1,5 @@
 /** 
-\defgroup driver_avr Avr Hw Drivers (for AVR peripherals)
-\defgroup soft General Libraries
+\defgroup driver_avr Avr Hardware Drivers
+\defgroup soft Software utilities
 \defgroup driver_ic Drivers for external ICs
 */

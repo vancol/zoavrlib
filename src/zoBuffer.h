@@ -16,7 +16,7 @@
 //  License for more details: <http://www.gnu.org/licenses/>
 //  
 /// \ingroup soft 
-/// \defgroup zoBuffer Ring byte buffers
+/// \defgroup zoBuffer zoBuffer.h : Byte ring buffers.
 /// 
 /// \par Overview
 /// This library provides byte buffering functionality. The buffer is protected from
@@ -25,24 +25,25 @@
 ///   
 /// \par Usage example 
 /// \code
+/// #include "zoTypes.h"
 /// #include "zoBuffer.h"
 ///
 /// ZO_BUFFER MyBuffer = ZO_BUFFER_DEFAULTS;    //declare a global buffer
 ///
 /// int main(void)
 /// {
-/// u08 c;
+///     u08 c;
 ///       
-/// zoBufferInit(&MyBuffer,10); //initialize the buffer to a size of ten bytes
+///     zoBufferInit(&MyBuffer,10); 		//initialize the buffer to a size of ten bytes
 ///        
-/// zoBufferPut(&MyBuffer,'i'); //put the char i into the buffer
+///     zoBufferPut(&MyBuffer,'i'); 		//put the char i into the buffer
 /// 
-/// if(!zoBufferIsFull())           //check if the buffer is full; if not:
-///     zoBufferPut(&MyBuffer,23); //put the number 23 into the buffer
+///     if(!zoBufferIsFull())   			//check if the buffer is full; if not:
+///         zoBufferPut(&MyBuffer,23);		//put the number 23 into the buffer
 ///
-/// if(!zoBufferIsEmpty())          //check if the buffer is empty; if not:
-///     c = zoBufferGet(&MyBuffer); //get the 'oldest' byte stored in the buffer
-///                                 //thus 'i' is assigned to c.
+///     if(!zoBufferIsEmpty())  			//check if the buffer is empty; if not:
+///         c = zoBufferGet(&MyBuffer); 	//get the 'oldest' byte stored in the buffer
+/// 									    //thus 'i' is assigned to c.
 /// }
 /// \endcode 
 //****************************************************************************************
@@ -54,7 +55,7 @@
 #include "zoTypes.h"
 
 //Types and defaults______________________________________________________________________
-//!Buffer type
+///Buffer type
 typedef volatile struct {
 	volatile u08 size;	///< Size of the ring buffer
 	volatile u08 ctr;	///< how many bytes are currently in the buffer
@@ -63,11 +64,12 @@ typedef volatile struct {
 	u08 *data;			///< pointer to byte storage
 }ZO_BUFFER;
 
-//!Default initialization of a ZO_BUFFER variable.
+///Default ZO_BUFFER variable initializer.
 #define ZO_BUFFER_DEFAULTS {0,0,0,0,0}
 
 //Function declarations___________________________________________________________________
-/*! \brief Initializes a ZO_BUFFER variable. Always call this function before usage. 
+/*! \brief Initializes a ZO_BUFFER variable. Always initialize a buffer variable with this
+	function before calling any other function. 
     \param *p A pointer to the buffer variable.
     \param  size  The maximum number of bytes the buffer can store.
     \return success of memory allocation for the buffer */
