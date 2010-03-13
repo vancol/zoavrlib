@@ -1,20 +1,3 @@
-/*! \file i2c.c \brief I2C interface using AVR Two-Wire Interface (TWI) hardware. */
-//*****************************************************************************
-//
-// File Name	: 'i2c.c'
-// Title		: I2C interface using AVR Two-Wire Interface (TWI) hardware
-// Author		: Pascal Stang - Copyright (C) 2002-2003
-// Created		: 2002.06.25
-// Revised		: 2003.03.02
-// Version		: 0.9
-// Target MCU	: Atmel AVR series
-// Editor Tabs	: 4
-//
-// This code is distributed under the GNU Public License
-//		which can be found at http://www.gnu.org/licenses/gpl.txt
-//
-//*****************************************************************************
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
@@ -22,7 +5,45 @@
 #include "zoMcu.h"
 #include "zoSystemTimer.h"
 
-ZO_ERROR zoI2cError = ZO_ERROR_DEFAULTS;
+// TWSR values (not bits) right shifted by 3 (thank you Marek Michalkiewicz)
+// Master
+#define TW_START					0x01
+#define TW_REP_START				0x02
+// Master Transmitter
+#define TW_MT_SLA_ACK				0x03
+#define TW_MT_SLA_NACK				0x04
+#define TW_MT_DATA_ACK				0x05
+#define TW_MT_DATA_NACK				0x06
+#define TW_MT_ARB_LOST				0x07
+// Master Receiver
+#define TW_MR_ARB_LOST				0x07
+#define TW_MR_SLA_ACK				0x08
+#define TW_MR_SLA_NACK				0x09
+#define TW_MR_DATA_ACK				0x0A
+#define TW_MR_DATA_NACK				0x0B
+// Slave Receiver
+#define TW_SR_SLA_ACK				0x0C
+#define TW_SR_ARB_LOST_SLA_ACK		0x0D
+#define TW_SR_GCALL_ACK				0x0E
+#define TW_SR_ARB_LOST_GCALL_ACK	0x0F
+#define TW_SR_DATA_ACK				0x10
+#define TW_SR_DATA_NACK				0x11
+#define TW_SR_GCALL_DATA_ACK		0x12
+#define TW_SR_GCALL_DATA_NACK		0x13
+#define TW_SR_STOP					0x14
+// Slave Transmitter
+#define TW_ST_SLA_ACK				0x15
+#define TW_ST_ARB_LOST_SLA_ACK		0x16
+#define TW_ST_DATA_ACK				0x17
+#define TW_ST_DATA_NACK				0x18
+#define TW_ST_LAST_DATA				0x19
+// Misc
+#define TW_NO_INFO					0x1F
+#define TW_BUS_ERROR				0x00
+
+// defines and constants
+#define TWCR_CMD_MASK		0x0F
+#define TWSR_STATUS_MASK	0xF8
 
 // types
 typedef enum
@@ -35,9 +56,7 @@ typedef enum
 	I2C_SLAVE_RX
 } ZO_I2C_STATE;
 
-// Standard I2C bit rates are:
-// 100KHz for slow speed
-// 400KHz for high speed
+ZO_ERROR zoI2cError = ZO_ERROR_DEFAULTS;
 
 // I2C state and address variables
 static volatile ZO_I2C_STATE I2cState;
@@ -287,8 +306,6 @@ bool zoI2cMasterReceive(u08 deviceAddr, u08 length, u08* data)
 #endif //ZO_I2C_ENABLE_MASTER_RECEIVE
 
 
-//! I2C (TWI) interrupt service routine
-//SIGNAL(SIG_2WIRE_SERIAL)
 ISR(TWI_vect)
 {
 	// read status bits	and shift right by 3. Execute corresponding functor

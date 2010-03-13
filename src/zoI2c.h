@@ -231,47 +231,5 @@ void zoI2cSendByte(u08 data);
 ///Acknowledge a received byte
 void zoI2cAcknowledgeRx(bool acknowledge);
 
-//@}
-
-// TWSR values (not bits) right shifted by 3
-// (taken from avr-libc twi.h - thank you Marek Michalkiewicz)
-// Master
-#define TW_START					0x01
-#define TW_REP_START				0x02
-// Master Transmitter
-#define TW_MT_SLA_ACK				0x03
-#define TW_MT_SLA_NACK				0x04
-#define TW_MT_DATA_ACK				0x05
-#define TW_MT_DATA_NACK				0x06
-#define TW_MT_ARB_LOST				0x07
-// Master Receiver
-#define TW_MR_ARB_LOST				0x07
-#define TW_MR_SLA_ACK				0x08
-#define TW_MR_SLA_NACK				0x09
-#define TW_MR_DATA_ACK				0x0A
-#define TW_MR_DATA_NACK				0x0B
-// Slave Receiver
-#define TW_SR_SLA_ACK				0x0C
-#define TW_SR_ARB_LOST_SLA_ACK		0x0D
-#define TW_SR_GCALL_ACK				0x0E
-#define TW_SR_ARB_LOST_GCALL_ACK	0x0F
-#define TW_SR_DATA_ACK				0x10
-#define TW_SR_DATA_NACK				0x11
-#define TW_SR_GCALL_DATA_ACK		0x12
-#define TW_SR_GCALL_DATA_NACK		0x13
-#define TW_SR_STOP					0x14
-// Slave Transmitter
-#define TW_ST_SLA_ACK				0x15
-#define TW_ST_ARB_LOST_SLA_ACK		0x16
-#define TW_ST_DATA_ACK				0x17
-#define TW_ST_DATA_NACK				0x18
-#define TW_ST_LAST_DATA				0x19
-// Misc
-#define TW_NO_INFO					0x1F
-#define TW_BUS_ERROR				0x00
-
-// defines and constants
-#define TWCR_CMD_MASK		0x0F
-#define TWSR_STATUS_MASK	0xF8
-
 #endif	//ZO_I2C_H
+//@}
