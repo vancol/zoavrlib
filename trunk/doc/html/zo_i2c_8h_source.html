@@ -116,51 +116,10 @@
 <a name="l00230"></a>00230 
 <a name="l00232"></a>00232 <span class="keywordtype">void</span> <a class="code" href="group__zo_i2c.html#gaa0cb81da3d34d43c14ec0eacb82e90b5" title="Acknowledge a received byte.">zoI2cAcknowledgeRx</a>(<span class="keywordtype">bool</span> acknowledge);
 <a name="l00233"></a>00233 
-<a name="l00235"></a>00235 
-<a name="l00236"></a>00236 <span class="comment">// TWSR values (not bits) right shifted by 3</span>
-<a name="l00237"></a>00237 <span class="comment">// (taken from avr-libc twi.h - thank you Marek Michalkiewicz)</span>
-<a name="l00238"></a>00238 <span class="comment">// Master</span>
-<a name="l00239"></a>00239 <span class="preprocessor">#define TW_START                    0x01</span>
-<a name="l00240"></a>00240 <span class="preprocessor"></span><span class="preprocessor">#define TW_REP_START                0x02</span>
-<a name="l00241"></a>00241 <span class="preprocessor"></span><span class="comment">// Master Transmitter</span>
-<a name="l00242"></a>00242 <span class="preprocessor">#define TW_MT_SLA_ACK               0x03</span>
-<a name="l00243"></a>00243 <span class="preprocessor"></span><span class="preprocessor">#define TW_MT_SLA_NACK              0x04</span>
-<a name="l00244"></a>00244 <span class="preprocessor"></span><span class="preprocessor">#define TW_MT_DATA_ACK              0x05</span>
-<a name="l00245"></a>00245 <span class="preprocessor"></span><span class="preprocessor">#define TW_MT_DATA_NACK             0x06</span>
-<a name="l00246"></a>00246 <span class="preprocessor"></span><span class="preprocessor">#define TW_MT_ARB_LOST              0x07</span>
-<a name="l00247"></a>00247 <span class="preprocessor"></span><span class="comment">// Master Receiver</span>
-<a name="l00248"></a>00248 <span class="preprocessor">#define TW_MR_ARB_LOST              0x07</span>
-<a name="l00249"></a>00249 <span class="preprocessor"></span><span class="preprocessor">#define TW_MR_SLA_ACK               0x08</span>
-<a name="l00250"></a>00250 <span class="preprocessor"></span><span class="preprocessor">#define TW_MR_SLA_NACK              0x09</span>
-<a name="l00251"></a>00251 <span class="preprocessor"></span><span class="preprocessor">#define TW_MR_DATA_ACK              0x0A</span>
-<a name="l00252"></a>00252 <span class="preprocessor"></span><span class="preprocessor">#define TW_MR_DATA_NACK             0x0B</span>
-<a name="l00253"></a>00253 <span class="preprocessor"></span><span class="comment">// Slave Receiver</span>
-<a name="l00254"></a>00254 <span class="preprocessor">#define TW_SR_SLA_ACK               0x0C</span>
-<a name="l00255"></a>00255 <span class="preprocessor"></span><span class="preprocessor">#define TW_SR_ARB_LOST_SLA_ACK      0x0D</span>
-<a name="l00256"></a>00256 <span class="preprocessor"></span><span class="preprocessor">#define TW_SR_GCALL_ACK             0x0E</span>
-<a name="l00257"></a>00257 <span class="preprocessor"></span><span class="preprocessor">#define TW_SR_ARB_LOST_GCALL_ACK    0x0F</span>
-<a name="l00258"></a>00258 <span class="preprocessor"></span><span class="preprocessor">#define TW_SR_DATA_ACK              0x10</span>
-<a name="l00259"></a>00259 <span class="preprocessor"></span><span class="preprocessor">#define TW_SR_DATA_NACK             0x11</span>
-<a name="l00260"></a>00260 <span class="preprocessor"></span><span class="preprocessor">#define TW_SR_GCALL_DATA_ACK        0x12</span>
-<a name="l00261"></a>00261 <span class="preprocessor"></span><span class="preprocessor">#define TW_SR_GCALL_DATA_NACK       0x13</span>
-<a name="l00262"></a>00262 <span class="preprocessor"></span><span class="preprocessor">#define TW_SR_STOP                  0x14</span>
-<a name="l00263"></a>00263 <span class="preprocessor"></span><span class="comment">// Slave Transmitter</span>
-<a name="l00264"></a>00264 <span class="preprocessor">#define TW_ST_SLA_ACK               0x15</span>
-<a name="l00265"></a>00265 <span class="preprocessor"></span><span class="preprocessor">#define TW_ST_ARB_LOST_SLA_ACK      0x16</span>
-<a name="l00266"></a>00266 <span class="preprocessor"></span><span class="preprocessor">#define TW_ST_DATA_ACK              0x17</span>
-<a name="l00267"></a>00267 <span class="preprocessor"></span><span class="preprocessor">#define TW_ST_DATA_NACK             0x18</span>
-<a name="l00268"></a>00268 <span class="preprocessor"></span><span class="preprocessor">#define TW_ST_LAST_DATA             0x19</span>
-<a name="l00269"></a>00269 <span class="preprocessor"></span><span class="comment">// Misc</span>
-<a name="l00270"></a>00270 <span class="preprocessor">#define TW_NO_INFO                  0x1F</span>
-<a name="l00271"></a>00271 <span class="preprocessor"></span><span class="preprocessor">#define TW_BUS_ERROR                0x00</span>
-<a name="l00272"></a>00272 <span class="preprocessor"></span>
-<a name="l00273"></a>00273 <span class="comment">// defines and constants</span>
-<a name="l00274"></a>00274 <span class="preprocessor">#define TWCR_CMD_MASK       0x0F</span>
-<a name="l00275"></a>00275 <span class="preprocessor"></span><span class="preprocessor">#define TWSR_STATUS_MASK    0xF8</span>
-<a name="l00276"></a>00276 <span class="preprocessor"></span>
-<a name="l00277"></a>00277 <span class="preprocessor">#endif  //ZO_I2C_H</span>
+<a name="l00234"></a>00234 <span class="preprocessor">#endif  //ZO_I2C_H</span>
+<a name="l00235"></a>00235 <span class="preprocessor"></span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Mar 12 22:13:28 2010 for 01 Mechatronics Avr Library by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Mar 13 13:37:34 2010 for 01 Mechatronics Avr Library by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
